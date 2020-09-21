@@ -1,0 +1,26 @@
+<% time_now = Time.now.to_i %>
+<div class="container">
+  <h1>New game</h1>
+
+  <!-- Here are the letters -->
+  <div class="letter-box">
+    <% @letters.each do |e| %>
+      <p class="letter"><%= e %></p>
+    <% end %>
+  </div>
+
+  <!-- the timer -->
+  <p id="time">0:00</p>
+
+  <!-- the form -->
+  <form action="/score" method="POST">
+    <label>What is the longest word you can find?</label>
+    <br>
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= hidden_field_tag :letters, @letters %>
+    <%= hidden_field_tag :time, time_now %>
+    <input type="text" name="answer" placeholder="Type here." class="search-bar">
+    <input type="submit" name="submit" value="Play" class="button">
+  </form>
+
+</div>
